@@ -17,7 +17,7 @@ def split_data(source_dir, target_dir, split_ratios=(0.7, 0.2, 0.1)):
         test_files = files[val_split:]
 
         for split, split_files in zip(["train", "val", "test"], [train_files, val_files, test_files]):
-            split_dir = os.path.join(target_dir, category, split)
+            split_dir = os.path.join(target_dir, split, category)
             os.makedirs(split_dir, exist_ok=True)
             for file_name in split_files:
                 shutil.copy(os.path.join(category_path, file_name), os.path.join(split_dir, file_name))
@@ -25,4 +25,3 @@ def split_data(source_dir, target_dir, split_ratios=(0.7, 0.2, 0.1)):
 if __name__ == "__main__":
     random.seed(42)
     split_data("data/raw", "data/processed")
-
